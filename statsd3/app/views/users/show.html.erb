@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Api key:</strong>
+  <%= @user.api_key %>
+</p>
+
+<p>
+  <strong>Current Pages</strong> ( <span><%= link_to 'New Page', new_user_page_path(@user) %></span> )
+  <ul>
+    <% @user.pages.each do |page| %>
+      <li><%= link_to page.title, user_page_path(@user, page) %></li>
+    <% end %>
+  </ul>
+  
+</p>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

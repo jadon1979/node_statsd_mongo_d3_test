@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @page.user.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @page.title %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @page.slug %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @page.body %>
+</p>
+
+<p>
+ <strong>Page Metrics</strong>
+ <%= render 'graph', stat: 'conversion_rates' %>
+</p>
+
+<br />
+<%= link_to 'Destroy', user_page_path(@user, @page), method: :delete, data: { confirm: 'Are you sure?' } %> | 
+<%= link_to 'Edit', edit_user_page_path(@user, @page) %> |
+<%= link_to 'Back', user_path(@user) %>
