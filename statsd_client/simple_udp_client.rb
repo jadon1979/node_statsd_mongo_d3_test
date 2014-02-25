@@ -18,7 +18,6 @@ class SimpleUDPClient
   private
 
     def send_message(message)
-      puts "MESSAGE: #{message}"
       socket.new.tap do |udp|
         udp.send(message, 0, host, port)
       end unless message.nil? || message.empty?

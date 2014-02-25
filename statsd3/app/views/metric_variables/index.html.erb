@@ -1,0 +1,40 @@
+<h3>Listing Metrics</h3>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Flag</th>
+      <th>Sample Rate</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <%= link_to 'New Metric', new_metric_variable_path, class: 'btn btn-primary' %>
+          </td>
+        </tr>
+      </tfoot>
+    <% @metric_variables.each do |metric_variable| %>
+      <tr>
+        <td><%= metric_variable.name %></td>
+        <td><%= metric_variable.metric_abr %></td>
+        <td><%= metric_variable.sample_rate %></td>
+        <td>
+          <div class="btn-group btn-group-sm pull-right">
+            <%= link_to 'Show', metric_variable, class: 'btn btn-default' %>
+            <%= link_to 'Edit', edit_metric_variable_path(metric_variable), class: 'btn btn-default' %>
+            <%= link_to 'Destroy', metric_variable, 
+              method: :delete, data: { confirm: 'Are you sure?' },
+              class: 'btn btn-danger'
+            %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

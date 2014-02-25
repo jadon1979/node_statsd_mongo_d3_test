@@ -7,7 +7,7 @@ Statsd3::Application.routes.draw do
   end
 
   resources :users_pages, only: [:index]
-
+  resources :metric_variables
 
   root 'users#index'
 end

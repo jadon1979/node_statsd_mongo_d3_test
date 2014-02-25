@@ -1,31 +1,18 @@
-<p id="notice"><%= notice %></p>
+<h3>Listing User Page</h3>
 
-<p>
-  <strong>User:</strong>
-  <%= @page.user.name %>
-</p>
+<div class="list-group">
+  <li class="list-group-item"><strong>Title:</strong> <%= @page.title %></li>
+  <li class="list-group-item"><strong>Slug:</strong> <%= @page.slug %></li>
+  <li class="list-group-item"><strong>Body:</strong>
+    <pre><code><%= @page.body %></code></pre>
+  </li>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @page.slug %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @page.body %>
-</p>
-
-<p>
- <strong>Page Metrics</strong>
- <%= render 'graph', stat: 'conversion_rates' %>
-</p>
-
-<br />
-<%= link_to 'Destroy', user_page_path(@user, @page), method: :delete, data: { confirm: 'Are you sure?' } %> | 
-<%= link_to 'Edit', edit_user_page_path(@user, @page) %> |
-<%= link_to 'Back', user_path(@user) %>
+<div class="btn-group btn-group-sm">
+  <%= link_to 'Back', user_path(@user), class: 'btn btn-default' %>
+  <%= link_to 'Edit', edit_user_page_path(@user, @page), class: 'btn btn-default' %>  
+  <%= link_to 'Destroy', user_page_path(@user, @page), 
+    method: :delete, data: { confirm: 'Are you sure?' },
+    class: 'btn btn-danger'
+  %>
+</div>

@@ -1,0 +1,28 @@
+<%= form_for [@metric_variable] do |f| %>
+
+  <div class="well">
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => "form-control", placeholder: "Enter a Metric Variable" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :metric_abr, "Metric Type" %>
+      <%= f.select :metric_abr, MetricVariable::METRIC_FLAGS, {}, :class => "form-control" %>
+    </div>
+
+     <div class="form-group">
+      <%= f.label :sample_rate, "Sample Rate" %>
+      <%= f.text_field :sample_rate, :class => "form-control", placeholder: "Enter a Sample Rate", default: 1 %>
+      <span class="help-block">Defaults to 1</span>
+    </div>
+
+  </div>
+
+  <div class="btn-group btn-group-sm">
+    <%= link_to "Back", metric_variables_url, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+

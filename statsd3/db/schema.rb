@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224105055) do
+ActiveRecord::Schema.define(version: 20140225173022) do
+
+  create_table "metric_variables", force: true do |t|
+    t.string   "name"
+    t.string   "metric_abr"
+    t.integer  "sample_rate", default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", force: true do |t|
     t.string   "title"

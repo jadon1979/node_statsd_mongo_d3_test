@@ -1,29 +1,27 @@
 <%= form_for [@user, @page] do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
 
-      <ul>
-      <% @page.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <div class="well">
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, :class => "form-control", placeholder: "Enter a Page Title" %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <div class="form-group">
+      <%= f.label :slug, "API Key" %>
+      <%= f.text_field :slug, :class => "form-control", placeholder: "Enter a Page Slug" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :body, "Body" %><br />
+      <%= f.text_area :body, rows: 10, class: "form-control", placeholder: "Enter Page Body" %>
+    </div>
+
   </div>
-  <div class="field">
-    <%= f.label :slug %><br>
-    <%= f.text_field :slug %>
+
+  <div class="btn-group btn-group-sm">
+    <%= link_to "Back", @user, class: "btn btn-default" %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body, rows: 25, cols: 50 %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>
+

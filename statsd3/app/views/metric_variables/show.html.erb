@@ -1,0 +1,16 @@
+<h3>Listing Metric</h3>
+
+<div class="list-group">
+  <li class="list-group-item"><strong>Metric:</strong> <%= @metric_variable.name %></li>
+  <li class="list-group-item"><strong>Flag:</strong> <%= @metric_variable.metric_abr %></li>
+  <li class="list-group-item"><strong>Sample Rate:</strong> <%= @metric_variable.sample_rate %></li>
+</div>
+
+<div class="btn-group btn-group-sm">
+  <%= link_to 'Back', metric_variables_path, class: 'btn btn-default' %>
+  <%= link_to 'Edit', edit_metric_variable_path(@metric_variable), class: 'btn btn-default' %>  
+  <%= link_to 'Destroy', @metric_variable, 
+    method: :delete, data: { confirm: 'Are you sure?' },
+    class: 'btn btn-danger'
+  %>
+</div>
