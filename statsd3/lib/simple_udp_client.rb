@@ -8,21 +8,15 @@ class SimpleUDPClient
     @host   = config[:host]
     @port   = config[:port]
     @socket = config[:socket]
-    post_initialize
   end
 
-  def post_initialize
-    raise NotImplementedError
+  def send_message(message)
+    socket.new.tap do |udp|
+      udp.send(message, 0, host, port)
+    end unless message.nil? || message.empty?
   end
 
   private
-
-    def send_message(message)
-      puts "MESSAGE: #{message}"
-      socket.new.tap do |udp|
-        udp.send(message, 0, host, port)
-      end unless message.nil? || message.empty?
-    end
 
     def host
       @host || '127.0.0.1'
