@@ -1,0 +1,10 @@
+<% render partial: 'd3_stylesheet' %>
+<script src="http://d3js.org/d3.v3.js"></script>
+
+<h3>Listing Page Metrics <small>: <%= @page.title %></small></h3>
+<!-- page_metrics_helper -->
+<%= generate_tabs %>
+
+<div id="d3graph">
+  <% render partial: 'd3_graph' %>
+</div>

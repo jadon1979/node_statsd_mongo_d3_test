@@ -26,3 +26,12 @@ User.create([
   {name: "Client 2", api_key: "client_1_api_key"},
   {name: "Client 3", api_key: "client_2_api_key"}
 ])
+
+MetricVariable.create([
+  {name: "bounce_rate", metric_abr: "c", sample_rate: 1},
+  {name: "conversion_rate", metric_abr: "c", sample_rate: 1},
+  {name: "render_time", metric_abr: "ms", sample_rate: 1},
+  {name: "repeat_visitors", metric_abr: "g", sample_rate: 1},
+  {name: "visitor_gauge", metric_abr: "g", sample_rate: 1}
+])
+

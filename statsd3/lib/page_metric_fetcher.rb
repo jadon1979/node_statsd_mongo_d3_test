@@ -2,6 +2,9 @@
 class PageMetricFetcher
   include Mongo
 
+  #Appended via statsd on insert
+  METRIC_APPENDAGE = '_10'
+
   attr_reader :mongo_database, :document, :page_stats, :page_id
 
   def initialize(options = {})
@@ -12,25 +15,14 @@ class PageMetricFetcher
     connect
   end
 
-  def fetch_bounce_rates_json
-    fetch_metric("counters", "bounce_rate_10", "count")
-  end
-
-  def fetch_visitor_rates_json
-    fetch_metric("counters", "visitors_10", "count")
-  end
-
-  def fetch_conversion_rates_json
-    fetch_metric("gauges", "conversion_rate_10", "gauge")
+  def fetch_metric(metric_flag, var_name)
+    var_name = var_name << METRIC_APPENDAGE
+    document = @mongo_database.retrieve_document
+    @page_stats = page_stats.new({ document: document, page_id: @page_id })
+    page_stats.fetch_stat_json(metric_flag, var_name)
   end
 
   private
-
-    def fetch_metric(category, var_name, field)
-      document = @mongo_database.retrieve_document
-      @page_stats = page_stats.new({ document: document, page_id: @page_id })
-      page_stats.fetch_stat_json(category, var_name, field)
-    end
 
     def connect
       @mongo_database = mongo_database.new({ document: @document })

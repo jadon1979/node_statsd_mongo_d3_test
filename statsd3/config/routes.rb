@@ -3,6 +3,7 @@ Statsd3::Application.routes.draw do
   resources :users do 
     resources :pages, except: [:index] do
       resources :page_stats, only: [:index]
+      resources :page_metrics, only: [:index]
     end
   end
 

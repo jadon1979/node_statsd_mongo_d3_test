@@ -7,7 +7,10 @@
     <small>(<%= @user.pages.size %>)</small>
     <ul class="list-unstyled">
       <% @user.pages.each do |page| %>
-        <li><%= link_to page.title, user_page_path(@user, page) %></li>
+        <li>
+          <%= link_to page.title, user_page_path(@user, page) %>
+          <small>( <%= link_to 'Metrics', user_page_page_metrics_path(@user, page) %> )</small>
+        </li>
       <% end %>
     </ul>
     <%= link_to 'New Page', new_user_page_path(@user), class: 'btn btn-primary btn-xs' %>

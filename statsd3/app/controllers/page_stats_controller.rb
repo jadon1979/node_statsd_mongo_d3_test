@@ -1,6 +1,6 @@
 class PageStatsController < ApplicationController
 
-  respond_to :json
+  respond_to :json, :html
 
   def index    
     @user = User.find(params[:user_id])
@@ -11,8 +11,13 @@ class PageStatsController < ApplicationController
 
     pmf_args = { document: @user.api_key, page_id: @page.id }
     page_metric_fetcher = PageMetricFetcher.new(pmf_args)
-    stat_lookup = params[:stat]
-    render json: page_metric_fetcher.send("fetch_#{stat_lookup}_json")
+    flag = params[:flag]
+    metric_var = params[:metric_var]
+    render json: page_metric_fetcher.fetch_metric(flag, metric_var)
+  end
+
+  def show
+
   end
 
 end

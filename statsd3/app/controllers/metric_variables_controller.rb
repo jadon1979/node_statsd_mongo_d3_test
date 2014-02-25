@@ -1,10 +1,11 @@
 class MetricVariablesController < ApplicationController
   before_action :set_metric_variable, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :json, :html
 
   def index
     @metric_variables = MetricVariable.all
+    respond_with @metric_variables
   end
 
   def show
@@ -24,7 +25,6 @@ class MetricVariablesController < ApplicationController
   end
 
   def update
-    @metric_variable = MetricVariable.new(metric_variable_params)
     if @metric_variable.update(metric_variable_params)
       flash[:notice] = 'Metric variable was successfully updated.'
     end

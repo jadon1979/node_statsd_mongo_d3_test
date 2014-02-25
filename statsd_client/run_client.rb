@@ -1,29 +1,33 @@
 require './statsd_client'
 require 'json'
-require 'open-uri'
+require 'net/http'
 
 config = {
   statsd_host: 'localhost',
   statsd_port: 8125,
-  users_pages: 'http://127.0.0.1:3000/users_pages'
+  users_pages: 'http://localhost:3000/users_pages',
+  metric_vars: 'http://localhost:3000/metric_variables'
 }
 
-# Get all Users' Pages in json format from the server
-users_pages = open(config[:users_pages])
+puts 'Gathering user page data'
+users_pages      = Net::HTTP.get(URI(config[:users_pages]))
+json_page_data   = JSON.parse(users_pages)
 
-# Parse data
-json_data = JSON.parse(users_pages.read)
+puts 'Gathering metric variable data'
+metric_variables = Net::HTTP.get(URI(config[:metric_vars]))
+json_metric_data = JSON.parse(metric_variables)
 
-json_data.each.with_index do |user_data|
+puts 'Sending metrics to Statsd'
+json_page_data.each.with_index do |user_data|
   api_key = user_data['api_key']
-  pages   = user_data['pages']
-  pages.each do |page|
-    path = "#{api_key}.page_#{page['id']}"    
+  user_data['pages'].each do |page|
+    path = "#{api_key}.page_#{page['id']}"
     StatsdClient.new.tap do |client|
-      client.send_gauges("#{path}_conversion_rate:#{rand 100}")
-      client.send_counters("#{path}_bounce_rate:#{rand 100}")
-      client.send_counters("#{path}_visitors:#{rand 100}")
-      client.send_timers("#{path}_visitation_times:#{rand 1000..10000}")      
+      # iterate metric variables and send random values to Statsd
+      json_metric_data.each do |metric|        
+        message = "#{path}_#{metric['name']}:#{rand 100}"
+        client.send_metric message, metric['metric_abr'], metric['sample_rate']
+      end
     end
   end
 end
