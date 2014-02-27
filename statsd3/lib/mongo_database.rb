@@ -24,19 +24,19 @@ class MongoDatabase
   private
 
     def mongo_client
-      @mongo_client || MongoClient
+      @mongo_client ||= MongoClient
     end
 
     def host
-      @host || '127.0.0.1'
+      @host ||= '127.0.0.1'
     end
 
     def port
-      @port || 27017
+      @port ||= 27017
     end
 
     def document
-      @document || 'test'
+      @document ||= 'test'
     end
 
 end

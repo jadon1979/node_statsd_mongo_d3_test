@@ -22,9 +22,9 @@ Page.create([
 ])
 
 User.create([
-  {name: "Client 1", api_key: "client_0_api_key"},
-  {name: "Client 2", api_key: "client_1_api_key"},
-  {name: "Client 3", api_key: "client_2_api_key"}
+  {name: "Client 1", api_key: "client_1_api_key"},
+  {name: "Client 2", api_key: "client_2_api_key"},
+  {name: "Client 3", api_key: "client_3_api_key"}
 ])
 
 MetricVariable.create([

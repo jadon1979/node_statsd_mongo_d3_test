@@ -24,15 +24,15 @@ class SimpleUDPClient
     end
 
     def host
-      @host || '127.0.0.1'
+      @host ||= '127.0.0.1'
     end
 
     def port
-      @port || 8125
+      @port ||= 8125
     end
 
     def socket
-      @socket || UDPSocket
+      @socket ||= UDPSocket
     end
 
 end

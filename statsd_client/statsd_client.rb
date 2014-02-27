@@ -21,3 +21,5 @@ class StatsdClient < SimpleUDPClient
   end
 
 end
+
+

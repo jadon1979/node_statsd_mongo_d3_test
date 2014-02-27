@@ -30,11 +30,11 @@ class PageMetricFetcher
     end
 
     def mongo_database
-      @mongo_database || MongoDatabase
+      @mongo_database ||= MongoDatabase
     end
 
     def page_stats
-      @page_stats || PageStats
+      @page_stats ||= PageStats
     end 
 
 end
